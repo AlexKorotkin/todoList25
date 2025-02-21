@@ -38,6 +38,16 @@ function App() {
         return setTasks(filteredTasks)
     };
 
+    const changeTaskStatus  = (taskId: string, isDone:boolean) => {
+        /*const task = tasks.find((task) => task.id === taskId);
+        if (task) {
+            task.isDone = isDone;
+            return setTasks([...tasks]);
+        }*/
+        const newState = tasks.map(task => task.id == taskId ? { ...task, isDone } : task)
+        setTasks(newState)
+    }
+
 
     let filteredTasks = tasks;
     if (filter === 'completed') {
@@ -57,6 +67,8 @@ function App() {
                           deleteTask={deleteTask}
                           changeFilter = {changeFilter}
                           createTask = {createTask}
+                          changeTaskStatus= {changeTaskStatus }
+                          filter = {filter}
             />
         </div>
     )
